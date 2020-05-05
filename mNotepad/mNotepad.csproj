@@ -115,6 +115,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notepad.ico" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\coding2.png" />
     <None Include="Resources\info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
