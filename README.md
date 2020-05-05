@@ -27,6 +27,6 @@ GitHub'dan indirilen sürüm için kuruluma ihtiyaç yoktur.
 Bulduğunuz hataları GitHub üzerinden ya da [Gmail](mailto:berkeaydin618@gmail.com) / [iCloud](mailto:berke_aydin61@icloud.com) üzerinden bana iletebilir ve eğer nasıl çözüleceğini biliyorsanız onu da bana iletebilirsiniz.
 
 ## Lisans
-Bu yazılım aşağıda adı belirtilen Apache v2.0 lisansı ile korunmaktadır.
+Bu yazılım aşağıda adı belirtilen Creative Commons Zero v1.0 Universal Lisansı ile korunmaktadır.
 
-[Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/legalcode)
