@@ -35,6 +35,9 @@
   <PropertyGroup>
     <ApplicationIcon>notepad.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>mNotepad.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
