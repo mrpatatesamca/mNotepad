@@ -42,13 +42,13 @@
             this.kodlamaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yazıTipiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yardimButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.hakkındaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.karakterkodlamaLabel = new System.Windows.Forms.Label();
             this.satirsayiLabel = new System.Windows.Forms.Label();
             this.karaktersayiLabel = new System.Windows.Forms.Label();
             this.LineNumberTextBox = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.hakkındaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ustmenuToolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -139,7 +139,7 @@
             this.ayarlarToolStripMenuItem.Image = global::mNotepad.Properties.Resources.setting;
             this.ayarlarToolStripMenuItem.Name = "ayarlarToolStripMenuItem";
             this.ayarlarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ayarlarToolStripMenuItem.Text = "Ayarlar";
             // 
             // metinButton
@@ -176,6 +176,13 @@
             this.yardimButton.Name = "yardimButton";
             this.yardimButton.Size = new System.Drawing.Size(73, 22);
             this.yardimButton.Text = "Yardım";
+            // 
+            // hakkındaToolStripMenuItem
+            // 
+            this.hakkındaToolStripMenuItem.Image = global::mNotepad.Properties.Resources.info;
+            this.hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
+            this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.hakkındaToolStripMenuItem.Text = "Hakkında";
             // 
             // panel1
             // 
@@ -255,13 +262,6 @@
             this.richTextBox1.FontChanged += new System.EventHandler(this.richTextBox1_FontChanged);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
-            // hakkındaToolStripMenuItem
-            // 
-            this.hakkındaToolStripMenuItem.Image = global::mNotepad.Properties.Resources.info;
-            this.hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hakkındaToolStripMenuItem.Text = "Hakkında";
-            // 
             // anaEkranForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,7 +276,7 @@
             this.MinimumSize = new System.Drawing.Size(455, 320);
             this.Name = "anaEkranForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mNotepad - \"DUZENLENEN_DOSYA_YOLU\"";
+            this.Text = "mNotepad -- \"DUZENLENEN_DOSYA_YOLU\"";
             this.Load += new System.EventHandler(this.anaEkranForm_Load);
             this.Resize += new System.EventHandler(this.anaEkranForm_Resize);
             this.ustmenuToolStrip.ResumeLayout(false);
