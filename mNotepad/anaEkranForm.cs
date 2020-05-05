@@ -16,5 +16,10 @@ namespace mNotepad
         {
             InitializeComponent();
         }
+
+        private void anaEkranForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
