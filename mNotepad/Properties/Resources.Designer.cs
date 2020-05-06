@@ -123,6 +123,16 @@ namespace mNotepad.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap mrpatatesamca_text_beyaz {
+            get {
+                object obj = ResourceManager.GetObject("mrpatatesamca-text-beyaz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap new_file {
             get {
                 object obj = ResourceManager.GetObject("new-file", resourceCulture);
