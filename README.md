@@ -2,7 +2,7 @@
 
 mNotepad basit ve karmaşık olamayan ama aynı zamanda gelişmiş bir metin düzenleme programıdır.
 ###### Instagram: [@mrpatatesamca](https://www.instagram.com/mrpatatesamca)
-
+###### Twitter: [@mrpatatesamca](https://www.twitter.com/mrpatatesamca)
 
 ## Bilgilendirme!
 
