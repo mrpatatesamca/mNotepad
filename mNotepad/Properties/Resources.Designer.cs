@@ -61,6 +61,16 @@ namespace mNotepad.Properties {
         }
         
         /// <summary>
+        ///   System.Byte[] türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static byte[] chiptune1 {
+            get {
+                object obj = ResourceManager.GetObject("chiptune1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
         internal static System.Drawing.Bitmap coding2 {
@@ -123,9 +133,29 @@ namespace mNotepad.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap look {
+            get {
+                object obj = ResourceManager.GetObject("look", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap mrpatatesamca_text_beyaz {
             get {
                 object obj = ResourceManager.GetObject("mrpatatesamca-text-beyaz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap mrpatatesamca_text_kucuk_beyaz_anim {
+            get {
+                object obj = ResourceManager.GetObject("mrpatatesamca-text-kucuk-beyaz-anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +226,16 @@ namespace mNotepad.Properties {
         internal static System.Drawing.Bitmap toolbox {
             get {
                 object obj = ResourceManager.GetObject("toolbox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallpaper3 {
+            get {
+                object obj = ResourceManager.GetObject("wallpaper3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

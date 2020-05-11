@@ -135,12 +135,34 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notepad.ico" />
-    <None Include="Resources\wallpaper2.jpg" />
+    <None Include="Resources\look.png" />
+    <None Include="Resources\wallpaper3.jpg" />
+    <None Include="Resources\mrpatatesamca-text-kucuk-beyaz-anim.gif" />
+    <None Include="Resources\chiptune1.mp3" />
     <None Include="Resources\mrpatatesamca-text-beyaz.png" />
     <None Include="Resources\notepad2.png" />
     <None Include="Resources\edit.png" />
     <None Include="Resources\coding2.png" />
     <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
