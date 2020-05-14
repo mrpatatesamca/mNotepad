@@ -2,13 +2,16 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="mNotepad.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="formsizeW" Type="System.Int32" Scope="User">
+    <Setting Name="formSizeW" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">583</Value>
     </Setting>
-    <Setting Name="formsizeH" Type="System.Int32" Scope="User">
+    <Setting Name="formSizeH" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">422</Value>
     </Setting>
-    <Setting Name="formstate" Type="System.String" Scope="User">
+    <Setting Name="formState" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dosyaKaydetOrj" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -64,6 +64,12 @@
     <Compile Include="anaEkranForm.Designer.cs">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="dosyaKaydetUyariForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dosyaKaydetUyariForm.Designer.cs">
+      <DependentUpon>dosyaKaydetUyariForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="hakkindaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="SimpleHelpers\FileEncoding.cs" />
     <EmbeddedResource Include="anaEkranForm.resx">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dosyaKaydetUyariForm.resx">
+      <DependentUpon>dosyaKaydetUyariForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="hakkindaForm.resx">
       <DependentUpon>hakkindaForm.cs</DependentUpon>
@@ -135,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notepad.ico" />
+    <None Include="Resources\exit2.png" />
+    <None Include="Resources\caution-128x128.png" />
     <None Include="Resources\look.png" />
     <None Include="Resources\wallpaper3.jpg" />
     <None Include="Resources\mrpatatesamca-text-kucuk-beyaz-anim.gif" />

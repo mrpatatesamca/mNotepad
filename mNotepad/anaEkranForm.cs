@@ -22,6 +22,7 @@ namespace mNotepad
         public anaEkranForm()
         {
             InitializeComponent();
+            document.PrintPage += new PrintPageEventHandler(document_PrintPage);
         }
 
         //Renkleri buradan değiştirebilirsiniz.
@@ -38,14 +39,18 @@ namespace mNotepad
         //Evrensel değişkenler.
         Font evrenselfont = new Font("Consolas", 10.0f);
         string dosyauzanti;
+        public bool dosyaKaydetDurum = false;
+        bool dosyaKaydetİlkDefaDurum = true;
+        string dosyaDizinEvrensel;
+
+        
+        
 
         //Dosya seçme ekranını açar ve sonrasında seçilen dosyayı uygulamaya aktarır.
-        private void editorDosyaAc()
+        public void editorDosyaAc()
         {
             try
             {
-                var fileContent = string.Empty;
-                var filePath = string.Empty;
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
                     openFileDialog.Title = "Bir Belge Aç";
@@ -55,17 +60,20 @@ namespace mNotepad
                     openFileDialog.RestoreDirectory = true;
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        //seçilen dosyanın bulunduğu dizinini al.
-                        filePath = openFileDialog.FileName;
-                        this.Text = "mNotepad -- " + filePath;
+                        //dosyanın dizinini evrensel bir değişkene ata
+                        dosyaDizinEvrensel = openFileDialog.FileName;
                         //seçilen dosyanın uzantısını bul ve ona göre kodlama renklendirmesi uygula.
-                        dosyauzanti = Path.GetExtension(filePath); //uzantıyı aldık örn: .txt | .xml
+                        dosyauzanti = Path.GetExtension(openFileDialog.FileName); //uzantıyı aldık örn: .txt | .xml
                         editorDosyaTurBelirle(); //uzantıya göre dosyanın türünü belirle
                         //seçilen dosyanın kodlanmasını bul (örn: UTF8 vs...)
-                        var encoding = FileEncoding.DetectFileEncoding(filePath);
+                        var encoding = FileEncoding.DetectFileEncoding(openFileDialog.FileName);
                         //editör kısmına seçilen dosyadaki verileri yaz.
-                        scintilla1.Text = File.ReadAllText(filePath, encoding);
+                        scintilla1.Text = File.ReadAllText(openFileDialog.FileName, encoding);
                         karakterkodlamaLabel.Text = encoding.BodyName.ToUpper();
+                        //dosya içeriğini program belleğine yaz ve kaydetme durumu için karşılaştırmak üzere beklet
+                        Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                        dosyaKaydetDurum = true;
+                        dosyaKaydetİlkDefaDurum = false;
                     }
                 }
             }
@@ -75,7 +83,7 @@ namespace mNotepad
             }
         }
 
-        private void editorDosyaTurBelirle()
+        public void editorDosyaTurBelirle()
         {
             if (dosyauzanti == ".cs") //eğer dosya C# belgesi ise.
             {
@@ -150,14 +158,44 @@ namespace mNotepad
             }
         }
 
-        //Dosya kaydetme ekranını açar ve onay verildikten sonra dosyaya verileri yazar.
-        private void editorDosyaFarkliKaydet()
+        //Dosyayı kaydeder eğer daha önce kaydedilmemişse dosya kaydetme ekranını açar ve onay verildikten sonra dosyaya verileri yazar.
+        public void editorDosyaKaydet()
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
+            if (dosyaKaydetİlkDefaDurum == true) //eğer dosya ilk defa kaydedilecek ise
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Title = "Belgeyi Kaydet";
+                    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    saveFileDialog.Filter = "Metin Belgesi (*.txt)|*.txt|Zengin Metin Belgesi (*.rtf)|*.rtf|Log Belgesi (*.log)|*.log|C Kaynak Belgesi (*.c)|*.c|C# Kaynak Belgesi (*.cs)|*.cs|C++ Kaynak Belgesi (*.cpp)|*.cpp|VB.Net Kaynak Belgesi (*.vb)|*.vb|Tüm dosyalar (*.*)|*.*";
+                    saveFileDialog.RestoreDirectory = true;
+                    saveFileDialog.CheckFileExists = false;
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(saveFileDialog.FileName, scintilla1.Text);
+                        dosyaKaydetDurum = true;
+                        dosyaKaydetİlkDefaDurum = false;
+                        dosyaDizinEvrensel = saveFileDialog.FileName;
+                        Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                    }
+                }
+            }
+            else //eğer dosya daha önce kaydedilmiş ise
+            {
+                File.WriteAllText(dosyaDizinEvrensel, scintilla1.Text);
+                dosyaKaydetDurum = true;
+                dosyaKaydetİlkDefaDurum = false;
+                Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+            }
+            
+        }
+
+        //Dosya kaydetme ekranını açar ve onay verildikten sonra dosyaya verileri yazar.
+        public void editorDosyaFarkliKaydet()
+        {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Title = "Dosya Aç";
+                saveFileDialog.Title = "Belgeyi Farklı Kaydet";
                 saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 saveFileDialog.Filter = "Metin Belgesi (*.txt)|*.txt|Zengin Metin Belgesi (*.rtf)|*.rtf|Log Belgesi (*.log)|*.log|C Kaynak Belgesi (*.c)|*.c|C# Kaynak Belgesi (*.cs)|*.cs|C++ Kaynak Belgesi (*.cpp)|*.cpp|VB.Net Kaynak Belgesi (*.vb)|*.vb|Tüm dosyalar (*.*)|*.*";
                 saveFileDialog.RestoreDirectory = true;
@@ -165,12 +203,15 @@ namespace mNotepad
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(saveFileDialog.FileName, scintilla1.Text);
+                    dosyaKaydetDurum = true;
+                    dosyaDizinEvrensel = saveFileDialog.FileName;
+                    Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
                 }
             }
         }
 
-        //editörün fontunu ve font boyutunu değiştirir.
-        private void editorFontAyarla()
+        //Editörün fontunu ve font boyutunu değiştirir.
+        public void editorFontAyarla()
         {
             FontDialog fontsecme = new FontDialog();
             fontsecme.ShowEffects = true;
@@ -206,7 +247,7 @@ namespace mNotepad
         private void anaEkranForm_Load(object sender, EventArgs e)
         {
             //Temel ayarlamalar
-            if (Properties.Settings.Default.formstate == "tamekran")
+            if (Properties.Settings.Default.formState == "tamekran")
             {
                 this.WindowState = FormWindowState.Maximized;
                 tamEkranToolStripMenuItem.Text = "Küçültülmüş Ekran";
@@ -214,10 +255,11 @@ namespace mNotepad
             else
             {
                 this.WindowState = FormWindowState.Normal;
-                this.Width = Properties.Settings.Default.formsizeW;
-                this.Height = Properties.Settings.Default.formsizeH;
+                this.Width = Properties.Settings.Default.formSizeW;
+                this.Height = Properties.Settings.Default.formSizeH;
                 tamEkranToolStripMenuItem.Text = "Tam Ekran";
             }
+            Properties.Settings.Default.dosyaKaydetOrj = string.Empty;
             scintilla1.WrapMode = WrapMode.None;
             scintilla1.IndentationGuides = IndentView.LookBoth;
             InitColors();
@@ -401,11 +443,6 @@ namespace mNotepad
             scintilla1.Styles[Style.IndentGuide].BackColor = LINE_BACK_COLOR;
         }
 
-        private void InitSyntaxColoring()
-        {
-            
-        }
-
         //Temalandırma alanı
         private void InitColors()
         {
@@ -445,18 +482,10 @@ namespace mNotepad
 
         private void scintilla1_TextChanged(object sender, EventArgs e)
         {
-            // Did the number of characters in the line number display change?
-            // i.e. nnn VS nn, or nnnn VS nn, etc...
             var maxLineNumberCharLength = scintilla1.Lines.Count.ToString().Length;
-            if (maxLineNumberCharLength == this.maxLineNumberCharLength)
-                return;
-
-            // Calculate the width required to display the last line number
-            // and include some padding for good measure.
             const int padding = 16;
             scintilla1.Margins[0].Width = scintilla1.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
-
         }
 
         private void editorKopyala()
@@ -674,15 +703,17 @@ namespace mNotepad
 
         private void anaEkranForm_SizeChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.formsizeW = this.Width;
-            Properties.Settings.Default.formsizeH = this.Height;
+            Properties.Settings.Default.formSizeW = this.Width;
+            Properties.Settings.Default.formSizeH = this.Height;
             if (this.WindowState == FormWindowState.Maximized)
             {
-                Properties.Settings.Default.formstate = "tamekran";
+                Properties.Settings.Default.formState = "tamekran";
+                tamEkranToolStripMenuItem.Text = "Küçültülmüş Ekran";
             }
             else
             {
-                Properties.Settings.Default.formstate = "normalekran";
+                Properties.Settings.Default.formState = "normalekran";
+                tamEkranToolStripMenuItem.Text = "Tam Ekran";
             }
             Properties.Settings.Default.Save();
         }
@@ -692,6 +723,20 @@ namespace mNotepad
             this.WindowState = FormWindowState.Normal;
             this.Width = 583;
             this.Height = 422;
+        }
+
+        private void dosyaKaydetDurumKontrolEt()
+        {
+            if (scintilla1.Text == Properties.Settings.Default.dosyaKaydetOrj)
+            {
+                dosyaKaydetDurum = true;
+                this.Text = "mNotepad -- " + dosyaDizinEvrensel;
+            }
+            else
+            {
+                dosyaKaydetDurum = false;
+                this.Text = "mNotepad -- " + dosyaDizinEvrensel + "*";
+            }
         }
 
         private void üstteGösterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -707,6 +752,65 @@ namespace mNotepad
                 üstteGösterToolStripMenuItem.CheckState = CheckState.Checked;
                 this.TopMost = true;
             }
+        }
+
+        private void dosyaKaydetDurumKontrolTimer_Tick(object sender, EventArgs e)
+        {
+            dosyaKaydetDurumKontrolEt();
+        }
+
+        private void kaydetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editorDosyaKaydet();
+        }
+
+        private void anaEkranForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dosyaKaydetUyariForm dosyaKaydetUyariFormfrm = new dosyaKaydetUyariForm();
+            //dosya kaydedilmemişse program kapanmadan önce uyar
+            if (dosyaKaydetDurum == false)
+            {
+                e.Cancel = true;
+                dosyaKaydetUyariFormfrm.ShowDialog();
+            }
+            else //daha önce kaydedilmiş ise
+            {
+                Application.Exit();
+            }
+        }
+
+        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void yakınlaştırToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            scintilla1.ZoomIn();
+        }
+
+        private void uzaklaştırToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            scintilla1.ZoomOut();
+        }
+
+        private void yakınlaştırmayıSıfırlaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            scintilla1.Zoom = 0;
+        }
+
+        private void yazdırToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialog.Document = document;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                document.Print();
+            }
+        }
+
+        void document_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(scintilla1.Text, new Font("Arial", 9, FontStyle.Regular), Brushes.Black, 20, 20);
         }
     }
 }

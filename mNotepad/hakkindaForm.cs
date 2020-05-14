@@ -44,5 +44,10 @@ namespace mNotepad
                 File.Delete(programyolu + @"\mrp\chiptune1.mp3");
             }
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/mrpatatesamca/mNotepad");
+        }
     }
 }

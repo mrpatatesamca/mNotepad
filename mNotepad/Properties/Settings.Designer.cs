@@ -26,36 +26,48 @@ namespace mNotepad.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("583")]
-        public int formsizeW {
+        public int formSizeW {
             get {
-                return ((int)(this["formsizeW"]));
+                return ((int)(this["formSizeW"]));
             }
             set {
-                this["formsizeW"] = value;
+                this["formSizeW"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("422")]
-        public int formsizeH {
+        public int formSizeH {
             get {
-                return ((int)(this["formsizeH"]));
+                return ((int)(this["formSizeH"]));
             }
             set {
-                this["formsizeH"] = value;
+                this["formSizeH"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string formstate {
+        public string formState {
             get {
-                return ((string)(this["formstate"]));
+                return ((string)(this["formState"]));
             }
             set {
-                this["formstate"] = value;
+                this["formState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string dosyaKaydetOrj {
+            get {
+                return ((string)(this["dosyaKaydetOrj"]));
+            }
+            set {
+                this["dosyaKaydetOrj"] = value;
             }
         }
     }
