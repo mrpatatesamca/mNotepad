@@ -63,20 +63,20 @@ namespace mNotepad.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static System.Drawing.Bitmap caution_128x128 {
+        internal static System.Drawing.Bitmap bug {
             get {
-                object obj = ResourceManager.GetObject("caution-128x128", resourceCulture);
+                object obj = ResourceManager.GetObject("bug", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   System.Byte[] türünde yerelleştirilmiş bir kaynak arar.
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static byte[] chiptune1 {
+        internal static System.Drawing.Bitmap caution_128x128 {
             get {
-                object obj = ResourceManager.GetObject("chiptune1", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("caution-128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

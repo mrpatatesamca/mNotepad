@@ -23,6 +23,7 @@ namespace mNotepad
         {
             InitializeComponent();
             document.PrintPage += new PrintPageEventHandler(document_PrintPage);
+            dosyaButunlukDogrula(); //dosyaların yerinde olduğunu kontrol et önce
         }
 
         //Renkleri buradan değiştirebilirsiniz.
@@ -42,9 +43,9 @@ namespace mNotepad
         public bool dosyaKaydetDurum = false;
         bool dosyaKaydetİlkDefaDurum = true;
         string dosyaDizinEvrensel;
+        string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
 
-        
-        
+
 
         //Dosya seçme ekranını açar ve sonrasında seçilen dosyayı uygulamaya aktarır.
         public void editorDosyaAc()
@@ -74,12 +75,14 @@ namespace mNotepad
                         Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
                         dosyaKaydetDurum = true;
                         dosyaKaydetİlkDefaDurum = false;
+                        //editör imleç en sondaki harfa gitsin
+                        scintilla1.SelectionStart = scintilla1.Text.Length;
                     }
                 }
             }
             catch
             {
-                MessageBox.Show("Dosya açılırken bir hata oluştu!","Hata!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Dosya açılırken bir hata oluştu!", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -187,7 +190,7 @@ namespace mNotepad
                 dosyaKaydetİlkDefaDurum = false;
                 Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
             }
-            
+
         }
 
         //Dosya kaydetme ekranını açar ve onay verildikten sonra dosyaya verileri yazar.
@@ -219,7 +222,7 @@ namespace mNotepad
             //FontDialog ve Scintilla'nın beraber düzgünce çalışabilmesi için birkaç dönüştürmelere ihtiyaç var.
             var cvt = new FontConverter(); //String olan font ismini Font olarak dönüştürür.
             Font fontcevirilmis = cvt.ConvertFromString(scintilla1.Styles[Style.Default].Font) as Font;
-            
+
             fontsecme.Color = scintilla1.Styles[Style.Default].ForeColor;
             fontsecme.Font = fontcevirilmis;
             if (fontsecme.ShowDialog() == DialogResult.OK)
@@ -246,6 +249,8 @@ namespace mNotepad
         //Form yüklendiğinde bir takım şeyleri ayarlar.
         private void anaEkranForm_Load(object sender, EventArgs e)
         {
+            
+
             //Temel ayarlamalar
             if (Properties.Settings.Default.formState == "tamekran")
             {
@@ -300,7 +305,7 @@ namespace mNotepad
             scintilla1.Styles[Style.Cpp.CommentDocKeyword].ForeColor = Color.Lavender;
             scintilla1.Styles[Style.Cpp.CommentDocKeywordError].ForeColor = Color.LemonChiffon;
             scintilla1.Styles[Style.Cpp.GlobalClass].ForeColor = Color.Turquoise;
-            
+
             scintilla1.Lexer = Lexer.Cpp;
 
             scintilla1.SetKeywords(0, "class extends implements import interface new case do while else if for in switch throw get set function var try catch finally while with default break continue delete return each const namespace package include use is as instanceof typeof author copy default deprecated eventType example exampleText exception haxe inheritDoc internal link mtasc mxmlc param private return see serial serialData serialField since throws usage version langversion playerversion productversion dynamic private public partial static intrinsic internal native override protected AS3 final super this arguments null Infinity NaN undefined true false abstract as base bool break by byte case catch char checked class const continue decimal default delegate do double descending explicit event extern else enum false finally fixed float for foreach from goto group if implicit in int interface internal into is lock long new null namespace object operator out override orderby params private protected public readonly ref return switch struct sbyte sealed short sizeof stackalloc static string select this throw true try typeof uint ulong unchecked unsafe ushort using var virtual volatile void while where yield");
@@ -462,7 +467,7 @@ namespace mNotepad
         private void InitNumberMargin()
         {
 
-            scintilla1.Styles[Style.LineNumber].BackColor =  LINE_BACK_COLOR;
+            scintilla1.Styles[Style.LineNumber].BackColor = LINE_BACK_COLOR;
             scintilla1.Styles[Style.LineNumber].ForeColor = FORE_COLOR;
             scintilla1.Styles[Style.IndentGuide].ForeColor = FORE_COLOR;
             scintilla1.Styles[Style.IndentGuide].BackColor = LINE_BACK_COLOR;
@@ -692,11 +697,13 @@ namespace mNotepad
             {
                 this.WindowState = FormWindowState.Maximized;
                 tamEkranToolStripMenuItem.Text = "Küçültülmüş Ekran";
+                tamEkranToolStripMenuItem.ToolTipText = "Program penceresini küçültür.";
             }
             else
             {
                 this.WindowState = FormWindowState.Normal;
                 tamEkranToolStripMenuItem.Text = "Tam Ekran";
+                tamEkranToolStripMenuItem.ToolTipText = "Program penceresini tam ekran yapar.";
             }
             //----------------------------------------------------------
         }
@@ -811,6 +818,54 @@ namespace mNotepad
         void document_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.Graphics.DrawString(scintilla1.Text, new Font("Arial", 9, FontStyle.Regular), Brushes.Black, 20, 20);
+        }
+
+        private void hataGidermeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyaButunlukDogrulamaForm dosyaButunlukDogrulamaFormfrm = new dosyaButunlukDogrulamaForm();
+            dosyaButunlukDogrulamaFormfrm.Show();
+        }
+
+        private void dosyaButunlukDogrula() //dosyaları kontrol et, eğer dosya yerinde yoksa uyarı ver.
+        {
+            dosyaButunlukDogrulamaForm dosyaButunlukDogrulamaFormfrm = new dosyaButunlukDogrulamaForm();
+            
+            //-------------------------------------------------------------------
+            if (!File.Exists("AxInterop.WMPLib.dll"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+            if (!File.Exists("Interop.WMPLib.dll"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+            if (!File.Exists("mNotepad.exe.config"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+            if (!File.Exists("ScintillaNET.dll"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+            if (!File.Exists("Ude.dll"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+            if (!File.Exists(programyolu + @"\mrp\chiptune1.mp3"))
+            {
+                dosyaButunlukDogrulamaFormfrm.ShowDialog();
+            }
+            //-------------------------------------------------------------------
+        }
+
+        private void yeniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(programyolu + @"\mNotepad.exe");
         }
     }
 }

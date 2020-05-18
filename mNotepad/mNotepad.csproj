@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>notepad.ico</ApplicationIcon>
+    <ApplicationIcon>notepad_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>mNotepad.Program</StartupObject>
@@ -64,6 +79,12 @@
     <Compile Include="anaEkranForm.Designer.cs">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="dosyaButunlukDogrulamaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dosyaButunlukDogrulamaForm.Designer.cs">
+      <DependentUpon>dosyaButunlukDogrulamaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="dosyaKaydetUyariForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +102,9 @@
     <Compile Include="SimpleHelpers\FileEncoding.cs" />
     <EmbeddedResource Include="anaEkranForm.resx">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dosyaButunlukDogrulamaForm.resx">
+      <DependentUpon>dosyaButunlukDogrulamaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dosyaKaydetUyariForm.resx">
       <DependentUpon>dosyaKaydetUyariForm.cs</DependentUpon>
@@ -143,13 +167,13 @@
     <None Include="Resources\text.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="notepad.ico" />
+    <Content Include="notepad_logo.ico" />
+    <None Include="Resources\bug.png" />
     <None Include="Resources\exit2.png" />
     <None Include="Resources\caution-128x128.png" />
     <None Include="Resources\look.png" />
     <None Include="Resources\wallpaper3.jpg" />
     <None Include="Resources\mrpatatesamca-text-kucuk-beyaz-anim.gif" />
-    <None Include="Resources\chiptune1.mp3" />
     <None Include="Resources\mrpatatesamca-text-beyaz.png" />
     <None Include="Resources\notepad2.png" />
     <None Include="Resources\edit.png" />
@@ -174,6 +198,18 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 ve x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

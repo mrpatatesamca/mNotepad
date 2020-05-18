@@ -74,6 +74,7 @@
             this.xMLXAMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ıNIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.araclarButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.hataGidermeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayarlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yardimButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.hakkındaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,6 +143,7 @@
             this.yeniToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.yeniToolStripMenuItem.Text = "Yeni";
             this.yeniToolStripMenuItem.ToolTipText = "Düzenlemek için yeni bir pencere açar.";
+            this.yeniToolStripMenuItem.Click += new System.EventHandler(this.yeniToolStripMenuItem_Click);
             // 
             // açToolStripMenuItem
             // 
@@ -150,7 +152,7 @@
             this.açToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.açToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.açToolStripMenuItem.Text = "Aç";
-            this.açToolStripMenuItem.ToolTipText = "Bir metin belgesini düzenlemek üzere açar.";
+            this.açToolStripMenuItem.ToolTipText = "Bir dosyayı düzenlemek üzere açar.";
             this.açToolStripMenuItem.Click += new System.EventHandler(this.açToolStripMenuItem_Click);
             // 
             // kaydetToolStripMenuItem
@@ -160,7 +162,7 @@
             this.kaydetToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.kaydetToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.kaydetToolStripMenuItem.Text = "Kaydet";
-            this.kaydetToolStripMenuItem.ToolTipText = "Değişiklikleri kaydeder.";
+            this.kaydetToolStripMenuItem.ToolTipText = "Yaptığınız değişiklikleri kaydeder.";
             this.kaydetToolStripMenuItem.Click += new System.EventHandler(this.kaydetToolStripMenuItem_Click);
             // 
             // farklıKaydetToolStripMenuItem
@@ -171,7 +173,7 @@
             | System.Windows.Forms.Keys.S)));
             this.farklıKaydetToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.farklıKaydetToolStripMenuItem.Text = "Farklı Kaydet";
-            this.farklıKaydetToolStripMenuItem.ToolTipText = "Var olan dosyadan bağımsız olarak başka bir dosyaya kayıt eder.";
+            this.farklıKaydetToolStripMenuItem.ToolTipText = "Yaptığınız değişiklikleri var olan dosyadan farklı, başka bir dosyaya kaydeder.";
             this.farklıKaydetToolStripMenuItem.Click += new System.EventHandler(this.farklıKaydetToolStripMenuItem_Click);
             // 
             // yazdırToolStripMenuItem
@@ -196,10 +198,12 @@
             this.çıkışToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
+            this.çıkışToolStripMenuItem.ToolTipText = "Programdan çıkış yapar.";
             this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton1
             // 
+            this.toolStripDropDownButton1.AutoToolTip = false;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kopyalaToolStripMenuItem,
             this.kesToolStripMenuItem,
@@ -220,6 +224,7 @@
             this.kopyalaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.kopyalaToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.kopyalaToolStripMenuItem.Text = "Kopyala";
+            this.kopyalaToolStripMenuItem.ToolTipText = "Seçilen metni kopyalar.";
             this.kopyalaToolStripMenuItem.Click += new System.EventHandler(this.kopyalaToolStripMenuItem_Click);
             // 
             // kesToolStripMenuItem
@@ -228,6 +233,7 @@
             this.kesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.kesToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.kesToolStripMenuItem.Text = "Kes";
+            this.kesToolStripMenuItem.ToolTipText = "Seçilen metni keser.";
             this.kesToolStripMenuItem.Click += new System.EventHandler(this.kesToolStripMenuItem_Click);
             // 
             // yapıştırToolStripMenuItem
@@ -236,6 +242,7 @@
             this.yapıştırToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.yapıştırToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.yapıştırToolStripMenuItem.Text = "Yapıştır";
+            this.yapıştırToolStripMenuItem.ToolTipText = "Panodaki metni yapıştırır.";
             this.yapıştırToolStripMenuItem.Click += new System.EventHandler(this.yapıştırToolStripMenuItem_Click);
             // 
             // silToolStripMenuItem
@@ -244,6 +251,7 @@
             this.silToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.silToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.silToolStripMenuItem.Text = "Sil";
+            this.silToolStripMenuItem.ToolTipText = "Seçili metni siler.";
             this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
             // 
             // tümünüSeçToolStripMenuItem
@@ -252,6 +260,7 @@
             this.tümünüSeçToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.tümünüSeçToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.tümünüSeçToolStripMenuItem.Text = "Tümünü Seç";
+            this.tümünüSeçToolStripMenuItem.ToolTipText = "Editördeki bütün metinleri seçer.";
             this.tümünüSeçToolStripMenuItem.Click += new System.EventHandler(this.tümünüSeçToolStripMenuItem_Click);
             // 
             // geriAlToolStripMenuItem
@@ -260,6 +269,7 @@
             this.geriAlToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.geriAlToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.geriAlToolStripMenuItem.Text = "Geri Al";
+            this.geriAlToolStripMenuItem.ToolTipText = "Değişiklikleri geri alır.";
             this.geriAlToolStripMenuItem.Click += new System.EventHandler(this.geriAlToolStripMenuItem_Click);
             // 
             // ileriAlToolStripMenuItem
@@ -269,6 +279,7 @@
             | System.Windows.Forms.Keys.Z)));
             this.ileriAlToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.ileriAlToolStripMenuItem.Text = "İleri Al";
+            this.ileriAlToolStripMenuItem.ToolTipText = "Geri alınan değişiklikleri yineler.";
             this.ileriAlToolStripMenuItem.Click += new System.EventHandler(this.ileriAlToolStripMenuItem_Click);
             // 
             // metinButton
@@ -290,10 +301,12 @@
             this.yazıTipiToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.yazıTipiToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.yazıTipiToolStripMenuItem.Text = "Yazı Tipi ve Biçimlendirme";
+            this.yazıTipiToolStripMenuItem.ToolTipText = "Editörün yazı tipini ve boyutunu değiştirir.";
             this.yazıTipiToolStripMenuItem.Click += new System.EventHandler(this.yazıTipiToolStripMenuItem_Click);
             // 
             // gorunumButton
             // 
+            this.gorunumButton.AutoToolTip = false;
             this.gorunumButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tamEkranToolStripMenuItem,
             this.üstteGösterToolStripMenuItem,
@@ -312,6 +325,7 @@
             this.tamEkranToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
             this.tamEkranToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.tamEkranToolStripMenuItem.Text = "Tam Ekran";
+            this.tamEkranToolStripMenuItem.ToolTipText = "Program penceresini tam ekran yapar.";
             this.tamEkranToolStripMenuItem.Click += new System.EventHandler(this.tamEkranToolStripMenuItem_Click);
             // 
             // üstteGösterToolStripMenuItem
@@ -321,6 +335,7 @@
             this.üstteGösterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
             this.üstteGösterToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.üstteGösterToolStripMenuItem.Text = "Üstte Göster";
+            this.üstteGösterToolStripMenuItem.ToolTipText = "Program penceresini diğer pencerelerin üstünde gösterir.";
             this.üstteGösterToolStripMenuItem.Click += new System.EventHandler(this.üstteGösterToolStripMenuItem_Click);
             // 
             // pencereBoyutunuSıfırlaToolStripMenuItem
@@ -330,6 +345,7 @@
             this.pencereBoyutunuSıfırlaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
             this.pencereBoyutunuSıfırlaToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.pencereBoyutunuSıfırlaToolStripMenuItem.Text = "Pencere Boyutunu Sıfırla";
+            this.pencereBoyutunuSıfırlaToolStripMenuItem.ToolTipText = "Program penceresini varsayılan ayarlara döndürür.";
             this.pencereBoyutunuSıfırlaToolStripMenuItem.Click += new System.EventHandler(this.pencereBoyutunuSıfırlaToolStripMenuItem_Click);
             // 
             // yakınlaştırmaToolStripMenuItem
@@ -341,6 +357,7 @@
             this.yakınlaştırmaToolStripMenuItem.Name = "yakınlaştırmaToolStripMenuItem";
             this.yakınlaştırmaToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.yakınlaştırmaToolStripMenuItem.Text = "Yakınlaştırma";
+            this.yakınlaştırmaToolStripMenuItem.ToolTipText = "Editörü yakınlaştırır veya uzaklaştırır.";
             // 
             // yakınlaştırToolStripMenuItem
             // 
@@ -348,6 +365,7 @@
             this.yakınlaştırToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.yakınlaştırToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.yakınlaştırToolStripMenuItem.Text = "Yakınlaştır";
+            this.yakınlaştırToolStripMenuItem.ToolTipText = "Editörü yakınlaştırır.";
             this.yakınlaştırToolStripMenuItem.Click += new System.EventHandler(this.yakınlaştırToolStripMenuItem_Click);
             // 
             // uzaklaştırToolStripMenuItem
@@ -356,6 +374,7 @@
             this.uzaklaştırToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
             this.uzaklaştırToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.uzaklaştırToolStripMenuItem.Text = "Uzaklaştır";
+            this.uzaklaştırToolStripMenuItem.ToolTipText = "Editörü uzaklaştırır.";
             this.uzaklaştırToolStripMenuItem.Click += new System.EventHandler(this.uzaklaştırToolStripMenuItem_Click);
             // 
             // yakınlaştırmayıSıfırlaToolStripMenuItem
@@ -364,10 +383,12 @@
             this.yakınlaştırmayıSıfırlaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Z)));
             this.yakınlaştırmayıSıfırlaToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.yakınlaştırmayıSıfırlaToolStripMenuItem.Text = "Yakınlaştırmayı Sıfırla";
+            this.yakınlaştırmayıSıfırlaToolStripMenuItem.ToolTipText = "Editörün yakınlaştırma ayarını varsayılan değere döndürür.";
             this.yakınlaştırmayıSıfırlaToolStripMenuItem.Click += new System.EventHandler(this.yakınlaştırmayıSıfırlaToolStripMenuItem_Click);
             // 
             // kodlamaButton
             // 
+            this.kodlamaButton.AutoToolTip = false;
             this.kodlamaButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aNSIToolStripMenuItem,
             this.uTF8ToolStripMenuItem,
@@ -413,13 +434,13 @@
             this.kodlamaRenklendirmeToolStripMenuItem.Name = "kodlamaRenklendirmeToolStripMenuItem";
             this.kodlamaRenklendirmeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.kodlamaRenklendirmeToolStripMenuItem.Text = "Kodlama Renklendirme";
+            this.kodlamaRenklendirmeToolStripMenuItem.ToolTipText = "Editördeki metinleri renklendirir.";
             // 
             // düzMetinToolStripMenuItem
             // 
             this.düzMetinToolStripMenuItem.Name = "düzMetinToolStripMenuItem";
             this.düzMetinToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.düzMetinToolStripMenuItem.Text = "Düz Metin";
-            this.düzMetinToolStripMenuItem.ToolTipText = "Düz renkler, hiç bir kelime renklendirilmez.";
             this.düzMetinToolStripMenuItem.Click += new System.EventHandler(this.düzMetinToolStripMenuItem_Click);
             // 
             // cToolStripMenuItem
@@ -496,6 +517,7 @@
             // 
             this.araclarButton.AutoToolTip = false;
             this.araclarButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hataGidermeToolStripMenuItem,
             this.ayarlarToolStripMenuItem});
             this.araclarButton.Image = global::mNotepad.Properties.Resources.toolbox;
             this.araclarButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -503,13 +525,23 @@
             this.araclarButton.Size = new System.Drawing.Size(73, 22);
             this.araclarButton.Text = "Araçlar";
             // 
+            // hataGidermeToolStripMenuItem
+            // 
+            this.hataGidermeToolStripMenuItem.Image = global::mNotepad.Properties.Resources.bug;
+            this.hataGidermeToolStripMenuItem.Name = "hataGidermeToolStripMenuItem";
+            this.hataGidermeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hataGidermeToolStripMenuItem.Text = "Hata Giderme";
+            this.hataGidermeToolStripMenuItem.ToolTipText = "Programa ait dosyaların bütünlüğünü kontrol eder.";
+            this.hataGidermeToolStripMenuItem.Click += new System.EventHandler(this.hataGidermeToolStripMenuItem_Click);
+            // 
             // ayarlarToolStripMenuItem
             // 
             this.ayarlarToolStripMenuItem.Image = global::mNotepad.Properties.Resources.setting;
             this.ayarlarToolStripMenuItem.Name = "ayarlarToolStripMenuItem";
             this.ayarlarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ayarlarToolStripMenuItem.Text = "Ayarlar";
+            this.ayarlarToolStripMenuItem.ToolTipText = "Programın ayarlarını değiştirebileceğiniz pencereyi açar.";
             // 
             // yardimButton
             // 
@@ -526,8 +558,9 @@
             // 
             this.hakkındaToolStripMenuItem.Image = global::mNotepad.Properties.Resources.info;
             this.hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
-            this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.hakkındaToolStripMenuItem.Text = "Hakkında";
+            this.hakkındaToolStripMenuItem.ToolTipText = "Program hakkında bilgileri gösterir.";
             this.hakkındaToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
             // 
             // panel1
@@ -775,6 +808,7 @@
         private System.Windows.Forms.ToolStripMenuItem çıkışToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem hataGidermeToolStripMenuItem;
     }
 }
 

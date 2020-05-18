@@ -19,18 +19,14 @@ namespace mNotepad
         {
             InitializeComponent();
         }
+
         //global şeyler
         string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
         WindowsMediaPlayer wmp = new WindowsMediaPlayer();
+
         private void hakkindaForm_Load(object sender, EventArgs e)
         {
-            //eğer dosya yerindeyse sil onu çünkü biz zaten yenisini yazacağız oraya
-            if (File.Exists(programyolu + @"\mrp\chiptune1.mp3"))
-            {
-                File.Delete(programyolu + @"\mrp\chiptune1.mp3");
-            }
-            //form açılınca arkada çok güzel bir müzik çalması için resources içindeki mp3 dosyasını geçici olarak bir dizine çıkartır ve oradan oynatır.
-            File.WriteAllBytes(programyolu + @"\mrp\chiptune1.mp3", Properties.Resources.chiptune1);
+            //form açılınca arkada çok güzel bir müzik çalması için dizindeki mp3 dosyasını oynatır.
             wmp.URL = programyolu + @"\mrp\chiptune1.mp3";
             wmp.controls.play();
         }
@@ -38,11 +34,6 @@ namespace mNotepad
         private void hakkindaForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             wmp.controls.stop();
-            //eğer dosya yerindeyse sil onu
-            if (File.Exists(programyolu + @"\mrp\chiptune1.mp3"))
-            {
-                File.Delete(programyolu + @"\mrp\chiptune1.mp3");
-            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
