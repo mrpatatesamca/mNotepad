@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace mNotepad
 {
@@ -19,12 +20,8 @@ namespace mNotepad
     {
         PrintDocument document = new PrintDocument();
         PrintDialog dialog = new PrintDialog();
-        public anaEkranForm()
-        {
-            InitializeComponent();
-            document.PrintPage += new PrintPageEventHandler(document_PrintPage);
-            dosyaButunlukDogrula(); //dosyaların yerinde olduğunu kontrol et önce
-        }
+        XmlTextReader xtr = new XmlTextReader(programyolu + @"\res\settings.xml"); //XML dosyasını okumak için hazırlık yap
+        
 
         //Renkleri buradan değiştirebilirsiniz.
         Color BACK_COLOR = Color.FromArgb(21, 33, 36);
@@ -43,9 +40,99 @@ namespace mNotepad
         public bool dosyaKaydetDurum = false;
         bool dosyaKaydetİlkDefaDurum = true;
         string dosyaDizinEvrensel;
-        string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
+        int formSizeW;
+        int formSizeH;
+        string formState;
+        string dosyaKaydetOrj;
+        string xmlAyarIsim;
+        string xmlAyarDeger;
+        static string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
 
+        public anaEkranForm()
+        {
+            InitializeComponent();
+            document.PrintPage += new PrintPageEventHandler(document_PrintPage);
+            dosyaButunlukDogrula(); //dosyaların yerinde olduğunu kontrol et önce
+            editorAyarYukle(); //XML dosyasından ayarları yükle
+        }
 
+        public void editorAyarYukle()
+        {
+            try
+            {
+                while (xtr.Read())
+                {
+                    if (xtr.NodeType == XmlNodeType.Element && xtr.Name == "name") //xml içindeki name elementini al
+                    {
+                        xmlAyarIsim += xtr.ReadElementContentAsString() + "*";
+                    }
+                    if (xtr.NodeType == XmlNodeType.Element && xtr.Name == "value") //xml içindeki value elementini al
+                    {
+                        xmlAyarDeger += xtr.ReadElementContentAsString() + "*";
+                    }
+                }
+                string data1;
+                string data2;
+                string[] splitted_data1;
+                string[] splitted_data2;
+                data1 = xmlAyarIsim;
+                data2 = xmlAyarDeger;
+                splitted_data1 = data1.Split('*');
+                splitted_data2 = data2.Split('*');
+                //değerleri gerekli değişkenlere ata.
+                formSizeW = Convert.ToInt32(splitted_data2[0]);
+                formSizeH = Convert.ToInt32(splitted_data2[1]);
+                formState = splitted_data2[2];
+                xtr.Close();
+            }
+            catch
+            {
+                MessageBox.Show(@"Ayarlar diskten okunamadı! Lütfen programı yeniden indirin! (res\settings.xml dosyası bozuk veya değiştirilmiş!)", "Hata!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                Application.Exit();
+            }
+        }
+
+        public void editorAyarKaydet()
+        {
+            try
+            {
+                XmlTextWriter xtw = new XmlTextWriter(programyolu + @"\res\settings.xml", System.Text.Encoding.UTF8); //XML dosyasını yazmak için hazırlık yap
+                xtw.Formatting = Formatting.Indented;
+
+                xtw.WriteStartDocument();
+
+                xtw.WriteComment("mNotepad ayarlarının saklandığı yer.");
+                xtw.WriteComment("Ne yaptığınızı bilmiyorsanız lütfen hiç bir şeye dokunmayınız!");
+
+                xtw.WriteStartElement("ayarlar");
+                //-------------------------------------------
+                xtw.WriteStartElement("ayar");
+                xtw.WriteElementString("name", "formSizeW");
+                xtw.WriteElementString("value", this.Width.ToString());
+                xtw.WriteEndElement();
+                //-------------------------------------------
+                xtw.WriteStartElement("ayar");
+                xtw.WriteElementString("name", "formSizeY");
+                xtw.WriteElementString("value", this.Height.ToString());
+                xtw.WriteEndElement();
+                //-------------------------------------------
+                xtw.WriteStartElement("ayar");
+                xtw.WriteElementString("name", "formState");
+                xtw.WriteElementString("value", formState);
+                xtw.WriteEndElement();
+                //-------------------------------------------
+                xtw.WriteEndElement();
+                xtw.WriteComment("Bu ayar dosyası program tarafından oluşturuldu. [" + System.DateTime.Now + "]");
+                xtw.WriteEndDocument();
+                xtw.Flush();
+                xtw.Close();
+            }
+            catch
+            {
+                MessageBox.Show(@"Ayarlar diske yazılamadı! Lütfen programı yeniden indirin! (res\settings.xml dosyası bozuk veya değiştirilmiş!)", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+        }
 
         //Dosya seçme ekranını açar ve sonrasında seçilen dosyayı uygulamaya aktarır.
         public void editorDosyaAc()
@@ -56,7 +143,7 @@ namespace mNotepad
                 {
                     openFileDialog.Title = "Bir Belge Aç";
                     openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    openFileDialog.Filter = "Tüm Metin Belgesi Dosyaları|*.txt;*.rtf;*.log;*.c;*.cs;*.cpp;*.vb;*.java;*.js;*.py;*.html;*.htm;*.xhtml;*.php;*.xml;*.ini;*.cmd;*.bat";
+                    openFileDialog.Filter = "Tüm Dosyalar (*.*)|*.*|Yaygın Belge Formatları|*.txt;*.rtf;*.log;*.c;*.cs;*.cpp;*.vb;*.java;*.js;*.jar;*.py;*.html;*.htm;*.xhtml;*.php;*.xml;*.xaml;*.ini;*.cmd;*.bat;*.v;*.sh";
                     openFileDialog.FilterIndex = 2;
                     openFileDialog.RestoreDirectory = true;
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -72,7 +159,7 @@ namespace mNotepad
                         scintilla1.Text = File.ReadAllText(openFileDialog.FileName, encoding);
                         karakterkodlamaLabel.Text = encoding.BodyName.ToUpper();
                         //dosya içeriğini program belleğine yaz ve kaydetme durumu için karşılaştırmak üzere beklet
-                        Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                        dosyaKaydetOrj = scintilla1.Text;
                         dosyaKaydetDurum = true;
                         dosyaKaydetİlkDefaDurum = false;
                         //editör imleç en sondaki harfa gitsin
@@ -170,7 +257,7 @@ namespace mNotepad
                 {
                     saveFileDialog.Title = "Belgeyi Kaydet";
                     saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    saveFileDialog.Filter = "Metin Belgesi (*.txt)|*.txt|Zengin Metin Belgesi (*.rtf)|*.rtf|Log Belgesi (*.log)|*.log|C Kaynak Belgesi (*.c)|*.c|C# Kaynak Belgesi (*.cs)|*.cs|C++ Kaynak Belgesi (*.cpp)|*.cpp|VB.Net Kaynak Belgesi (*.vb)|*.vb|Tüm dosyalar (*.*)|*.*";
+                    saveFileDialog.Filter = "Metin Belgesi (*.txt)|*.txt|Zengin Metin Belgesi (*.rtf)|*.rtf|Log Belgesi (*.log)|*.log|C Kaynak Belgesi (*.c)|*.c|C# Kaynak Belgesi (*.cs)|*.cs|C++ Kaynak Belgesi (*.cpp)|*.cpp|VB.Net Kaynak Belgesi (*.vb)|*.vb|Batch Dosyası (*.bat)|*.bat|INI Belgesi (*.ini)|*.ini|Extensible Markup Belgesi (*.xml, *.xaml)|*.xml;*.xaml|HyperText Belgesi (*.html, *.htm, *xhtml)|*.html;*.htm;*.xhtml|Tüm Dosyalar (*.*)|*.*";
                     saveFileDialog.RestoreDirectory = true;
                     saveFileDialog.CheckFileExists = false;
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -179,7 +266,7 @@ namespace mNotepad
                         dosyaKaydetDurum = true;
                         dosyaKaydetİlkDefaDurum = false;
                         dosyaDizinEvrensel = saveFileDialog.FileName;
-                        Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                        dosyaKaydetOrj = scintilla1.Text;
                     }
                 }
             }
@@ -188,7 +275,7 @@ namespace mNotepad
                 File.WriteAllText(dosyaDizinEvrensel, scintilla1.Text);
                 dosyaKaydetDurum = true;
                 dosyaKaydetİlkDefaDurum = false;
-                Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                dosyaKaydetOrj = scintilla1.Text;
             }
 
         }
@@ -208,7 +295,7 @@ namespace mNotepad
                     File.WriteAllText(saveFileDialog.FileName, scintilla1.Text);
                     dosyaKaydetDurum = true;
                     dosyaDizinEvrensel = saveFileDialog.FileName;
-                    Properties.Settings.Default.dosyaKaydetOrj = scintilla1.Text;
+                    dosyaKaydetOrj = scintilla1.Text;
                 }
             }
         }
@@ -252,7 +339,7 @@ namespace mNotepad
             
 
             //Temel ayarlamalar
-            if (Properties.Settings.Default.formState == "tamekran")
+            if (formState == "tamekran")
             {
                 this.WindowState = FormWindowState.Maximized;
                 tamEkranToolStripMenuItem.Text = "Küçültülmüş Ekran";
@@ -260,11 +347,11 @@ namespace mNotepad
             else
             {
                 this.WindowState = FormWindowState.Normal;
-                this.Width = Properties.Settings.Default.formSizeW;
-                this.Height = Properties.Settings.Default.formSizeH;
+                this.Width = formSizeW;
+                this.Height = formSizeH;
                 tamEkranToolStripMenuItem.Text = "Tam Ekran";
             }
-            Properties.Settings.Default.dosyaKaydetOrj = string.Empty;
+            dosyaKaydetOrj = string.Empty;
             scintilla1.WrapMode = WrapMode.None;
             scintilla1.IndentationGuides = IndentView.LookBoth;
             InitColors();
@@ -710,19 +797,18 @@ namespace mNotepad
 
         private void anaEkranForm_SizeChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.formSizeW = this.Width;
-            Properties.Settings.Default.formSizeH = this.Height;
+            formSizeW = this.Width;
+            formSizeH = this.Height;
             if (this.WindowState == FormWindowState.Maximized)
             {
-                Properties.Settings.Default.formState = "tamekran";
+                formState = "tamekran";
                 tamEkranToolStripMenuItem.Text = "Küçültülmüş Ekran";
             }
             else
             {
-                Properties.Settings.Default.formState = "normalekran";
+                formState = "normalekran";
                 tamEkranToolStripMenuItem.Text = "Tam Ekran";
             }
-            Properties.Settings.Default.Save();
         }
 
         private void pencereBoyutunuSıfırlaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -734,7 +820,7 @@ namespace mNotepad
 
         private void dosyaKaydetDurumKontrolEt()
         {
-            if (scintilla1.Text == Properties.Settings.Default.dosyaKaydetOrj)
+            if (scintilla1.Text == dosyaKaydetOrj)
             {
                 dosyaKaydetDurum = true;
                 this.Text = "mNotepad -- " + dosyaDizinEvrensel;
@@ -782,6 +868,7 @@ namespace mNotepad
             }
             else //daha önce kaydedilmiş ise
             {
+                editorAyarKaydet();
                 Application.Exit();
             }
         }
@@ -841,7 +928,7 @@ namespace mNotepad
                 dosyaButunlukDogrulamaFormfrm.ShowDialog();
             }
             //-------------------------------------------------------------------
-            if (!File.Exists("mNotepad.exe.config"))
+            if (!File.Exists(programyolu + @"\res\settings.xml"))
             {
                 dosyaButunlukDogrulamaFormfrm.ShowDialog();
             }
@@ -856,7 +943,7 @@ namespace mNotepad
                 dosyaButunlukDogrulamaFormfrm.ShowDialog();
             }
             //-------------------------------------------------------------------
-            if (!File.Exists(programyolu + @"\mrp\chiptune1.mp3"))
+            if (!File.Exists(programyolu + @"\res\chiptune1.mp3"))
             {
                 dosyaButunlukDogrulamaFormfrm.ShowDialog();
             }

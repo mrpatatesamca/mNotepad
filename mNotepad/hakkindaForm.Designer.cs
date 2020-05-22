@@ -62,7 +62,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(211, 17);
             this.versionLabel.TabIndex = 2;
-            this.versionLabel.Text = "mNotepad v0.2-alpha";
+            this.versionLabel.Text = "mNotepad v0.3-alpha";
             this.versionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox2

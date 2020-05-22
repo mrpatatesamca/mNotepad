@@ -22,53 +22,5 @@ namespace mNotepad.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("583")]
-        public int formSizeW {
-            get {
-                return ((int)(this["formSizeW"]));
-            }
-            set {
-                this["formSizeW"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("422")]
-        public int formSizeH {
-            get {
-                return ((int)(this["formSizeH"]));
-            }
-            set {
-                this["formSizeH"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string formState {
-            get {
-                return ((string)(this["formState"]));
-            }
-            set {
-                this["formState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string dosyaKaydetOrj {
-            get {
-                return ((string)(this["dosyaKaydetOrj"]));
-            }
-            set {
-                this["dosyaKaydetOrj"] = value;
-            }
-        }
     }
 }

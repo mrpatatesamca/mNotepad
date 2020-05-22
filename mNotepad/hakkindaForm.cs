@@ -27,7 +27,7 @@ namespace mNotepad
         private void hakkindaForm_Load(object sender, EventArgs e)
         {
             //form açılınca arkada çok güzel bir müzik çalması için dizindeki mp3 dosyasını oynatır.
-            wmp.URL = programyolu + @"\mrp\chiptune1.mp3";
+            wmp.URL = programyolu + @"\res\chiptune1.mp3";
             wmp.controls.play();
         }
 

@@ -48,7 +48,7 @@ namespace mNotepad
                 dosyadurumTextBox.AppendText("EKSİK" + Environment.NewLine);
             }
             //-------------------------------------------------------------------
-            if (File.Exists("mNotepad.exe.config"))
+            if (File.Exists(programyolu + @"\res\settings.xml"))
             {
                 dosyadurumTextBox.AppendText("TAMAM" + Environment.NewLine);
             }
@@ -75,7 +75,7 @@ namespace mNotepad
                 dosyadurumTextBox.AppendText("EKSİK" + Environment.NewLine);
             }
             //-------------------------------------------------------------------
-            if (File.Exists(programyolu + @"\mrp\chiptune1.mp3"))
+            if (File.Exists(programyolu + @"\res\chiptune1.mp3"))
             {
                 dosyadurumTextBox.AppendText("TAMAM" + Environment.NewLine);
             }
@@ -88,14 +88,14 @@ namespace mNotepad
             //hata var mı yok mu onu kontrol et.
             if (dosyadurumTextBox.Text.Contains("EKSİK"))
             {
-                altbilgiLabel.Text = "Hata! Eksik dosya bulundu!";
+                altbilgiLabel.Text = "Hata! Eksik dosya bulundu! Program bu şekilde çalışamaz, lütfen programı tekrar indirin!";
+                altbilgiLabel.ForeColor = Color.Tomato;
                 kapatButton.Text = "Programı Kapat";
-                MessageBox.Show("Eksik veya bozuk dosya bulundu! mNotepad programı listede bulunan dosyalar olmadan çalışamaz, bu sebeple lütfen programı kapatın ve mNotepad programını tekrar indirin. Tamam butonuna bastığınız zaman programdan çıkış yapılacaktır!", "Eksik veya Bozuk Dosya Bulundu!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
             }
             else
             {
                 altbilgiLabel.Text = "Bütün dosyalar yerinde ve kullanılmaya hazır!";
+                altbilgiLabel.ForeColor = Color.LimeGreen;
                 kapatButton.Text = "Tamam";
             }
         }

@@ -42,28 +42,32 @@
             // 
             this.dosyaisimTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dosyaisimTextBox.BackColor = System.Drawing.Color.Tomato;
+            this.dosyaisimTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(51)))), ((int)(((byte)(40)))));
             this.dosyaisimTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dosyaisimTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dosyaisimTextBox.ForeColor = System.Drawing.Color.White;
             this.dosyaisimTextBox.Location = new System.Drawing.Point(12, 77);
             this.dosyaisimTextBox.Multiline = true;
             this.dosyaisimTextBox.Name = "dosyaisimTextBox";
             this.dosyaisimTextBox.ReadOnly = true;
-            this.dosyaisimTextBox.Size = new System.Drawing.Size(189, 133);
+            this.dosyaisimTextBox.ShortcutsEnabled = false;
+            this.dosyaisimTextBox.Size = new System.Drawing.Size(228, 133);
             this.dosyaisimTextBox.TabIndex = 0;
-            this.dosyaisimTextBox.Text = " AxInterop.WMPLib.dll\r\n Interop.WMPLib.dll\r\n mNotepad.exe.config\r\n ScintillaNET.d" +
-    "ll\r\n Ude.dll\r\n \\mrp\\chiptune1.mp3";
+            this.dosyaisimTextBox.Text = " AxInterop.WMPLib.dll\r\n Interop.WMPLib.dll\r\n settings.xml\r\n ScintillaNET.dll\r\n Ud" +
+    "e.dll\r\n chiptune1.mp3";
             // 
             // dosyadurumTextBox
             // 
             this.dosyadurumTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dosyadurumTextBox.BackColor = System.Drawing.Color.Tomato;
+            this.dosyadurumTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(51)))), ((int)(((byte)(40)))));
             this.dosyadurumTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dosyadurumTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dosyadurumTextBox.ForeColor = System.Drawing.Color.White;
-            this.dosyadurumTextBox.Location = new System.Drawing.Point(193, 77);
+            this.dosyadurumTextBox.Location = new System.Drawing.Point(232, 77);
             this.dosyadurumTextBox.Multiline = true;
             this.dosyadurumTextBox.Name = "dosyadurumTextBox";
             this.dosyadurumTextBox.ReadOnly = true;
+            this.dosyadurumTextBox.ShortcutsEnabled = false;
             this.dosyadurumTextBox.Size = new System.Drawing.Size(72, 133);
             this.dosyadurumTextBox.TabIndex = 1;
             this.dosyadurumTextBox.Text = "TARANIYOR\r\nTARANIYOR\r\nTARANIYOR\r\nTARANIYOR\r\nTARANIYOR\r\nTARANIYOR";
@@ -76,14 +80,14 @@
             this.altbilgiLabel.ForeColor = System.Drawing.Color.White;
             this.altbilgiLabel.Location = new System.Drawing.Point(9, 213);
             this.altbilgiLabel.Name = "altbilgiLabel";
-            this.altbilgiLabel.Size = new System.Drawing.Size(256, 35);
+            this.altbilgiLabel.Size = new System.Drawing.Size(295, 31);
             this.altbilgiLabel.TabIndex = 2;
             this.altbilgiLabel.Text = "Dosya bütünlüğü taraması yapılıyor lütfen bekleyin...";
             // 
             // kapatButton
             // 
             this.kapatButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.kapatButton.Location = new System.Drawing.Point(90, 276);
+            this.kapatButton.Location = new System.Drawing.Point(110, 247);
             this.kapatButton.Name = "kapatButton";
             this.kapatButton.Size = new System.Drawing.Size(96, 23);
             this.kapatButton.TabIndex = 3;
@@ -98,7 +102,7 @@
             this.ustbilgiLabel.ForeColor = System.Drawing.Color.White;
             this.ustbilgiLabel.Location = new System.Drawing.Point(9, 9);
             this.ustbilgiLabel.Name = "ustbilgiLabel";
-            this.ustbilgiLabel.Size = new System.Drawing.Size(256, 65);
+            this.ustbilgiLabel.Size = new System.Drawing.Size(295, 65);
             this.ustbilgiLabel.TabIndex = 4;
             this.ustbilgiLabel.Text = "mNotepad programının düzgün çalışabilmesi için aşağıda listenen dosyaların progra" +
     "m ile aynı dizinde bulunması gerekmektedir. Eğer eksik bir dosya var ise lütfen " +
@@ -114,8 +118,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Tomato;
-            this.ClientSize = new System.Drawing.Size(277, 311);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(51)))), ((int)(((byte)(40)))));
+            this.ClientSize = new System.Drawing.Size(316, 282);
             this.Controls.Add(this.ustbilgiLabel);
             this.Controls.Add(this.kapatButton);
             this.Controls.Add(this.altbilgiLabel);
