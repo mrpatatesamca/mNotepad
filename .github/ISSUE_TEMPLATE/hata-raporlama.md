@@ -1,38 +1,32 @@
 ---
 name: Hata Raporlama
-about: Create a report to help us improve
+about: Bana yardımcı olmak için hata raporu oluşturun.
 title: ''
-labels: ''
-assignees: ''
+labels: bug
+assignees: mrpatatesamca
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Hata açıklaması**
+Hatanın ne olduğuna dair açık ve anlaşılır bir açıklama.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Hata tetikleme**
+Hatanın meydana gelmesi için yapılması gerekenler: (Adımları istediğiniz gibi düzenleyebilirsiniz!)
+1. Şuraya gidin '...'
+2. Şuna tıklayın '....'
+3. Şuraya bakın '....'
+4. Hata oluştu!
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Normalde olması beklenen olay**
+Hata olmadığını varsayalım, tam olarak ne olması gerekirdi burada?
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Ekran görüntüleri**
+Eğer varsa ekran görüntüsünü yükleyin.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Sistem bilgileriniz (Lütfen aşağıdaki bölümü doldurun!):**
+ - İşletim Sistemi: [örn: Windows 10 x64bit]
+ - .NET Framework Sürümü: [örn: .NET Framework 4.7.2]
+ - Program Sürümü: [örn: 0.5-alpha, 0.5.0.0, 0.5.0.0-alpha]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Ek olarak bahsetmek istedikleriniz**
+Varsa eğer belirtmek istediğiniz hata ile ilgili ek bilgiler.
