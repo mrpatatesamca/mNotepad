@@ -1,20 +1,20 @@
 ---
 name: Yeni Fikir Belirtme
-about: Suggest an idea for this project
+about: Bu program için aklınıza gelen yeni özellikleri ve fikirlerinizi belirtin.
 title: ''
-labels: ''
-assignees: ''
+labels: enhancement
+assignees: mrpatatesamca
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Özellik öneriniz bir problem ile alakalı mı?**
+Probleminizin ne olduğu hakkında açık ve anlaşılır bir açıklama. [örn: Şu olduğunda hep kafam karışıyor...]
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Çözüm yolunu güzel bir şekilde açıklayınız.**
+Ne olmasını istediğinizi güzelce ve açık bir şekilde yazınız.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Düşündüğünüz alternatif yolları yazınız.**
+Açık ve anlaşılır bir şekilde düşünmüş olduğunuz alternatif yolları ve nasıl olması gerektiğini yazınız.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Ek olarak yazmak istedikleriniz.**
+Eklenmesini istediğiniz özellik ile ilgili ek bilgiler veya ekran görüntülerini paylaşın.
