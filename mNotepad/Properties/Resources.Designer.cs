@@ -103,6 +103,16 @@ namespace mNotepad.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap encode {
+            get {
+                object obj = ResourceManager.GetObject("encode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap exit2 {
             get {
                 object obj = ResourceManager.GetObject("exit2", resourceCulture);
@@ -136,6 +146,16 @@ namespace mNotepad.Properties {
         internal static System.Drawing.Bitmap font {
             get {
                 object obj = ResourceManager.GetObject("font", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap fullscreen {
+            get {
+                object obj = ResourceManager.GetObject("fullscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +243,29 @@ namespace mNotepad.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static System.Drawing.Bitmap setting {
+        internal static System.Drawing.Bitmap save_false {
             get {
-                object obj = ResourceManager.GetObject("setting", resourceCulture);
+                object obj = ResourceManager.GetObject("save-false", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_true {
+            get {
+                object obj = ResourceManager.GetObject("save-true", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings2 {
+            get {
+                object obj = ResourceManager.GetObject("settings2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

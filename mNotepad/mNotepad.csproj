@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -79,6 +79,12 @@
     <Compile Include="anaEkranForm.Designer.cs">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ayarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ayarForm.Designer.cs">
+      <DependentUpon>ayarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="dosyaButunlukDogrulamaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="SimpleHelpers\FileEncoding.cs" />
     <EmbeddedResource Include="anaEkranForm.resx">
       <DependentUpon>anaEkranForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ayarForm.resx">
+      <DependentUpon>ayarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dosyaButunlukDogrulamaForm.resx">
       <DependentUpon>dosyaButunlukDogrulamaForm.cs</DependentUpon>
@@ -140,9 +149,6 @@
     <None Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\setting.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\toolbox.png" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +174,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notepad_logo.ico" />
+    <None Include="Resources\encode.png" />
+    <None Include="Resources\save-true.png" />
+    <None Include="Resources\save-false.png" />
+    <None Include="Resources\fullscreen.png" />
+    <None Include="Resources\settings2.png" />
     <None Include="Resources\bug.png" />
     <None Include="Resources\exit2.png" />
     <None Include="Resources\caution-128x128.png" />

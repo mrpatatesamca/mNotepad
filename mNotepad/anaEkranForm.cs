@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +22,10 @@ namespace mNotepad
         PrintDocument document = new PrintDocument();
         PrintDialog dialog = new PrintDialog();
         XmlTextReader xtr = new XmlTextReader(programyolu + @"\res\settings.xml"); //XML dosyasını okumak için hazırlık yap
-        
+        hakkindaForm hakkindaFormfrm = new hakkindaForm();
+        ayarForm ayarFormfrm = new ayarForm();
+        dosyaButunlukDogrulamaForm dosyaButunlukDogrulamaFormfrm = new dosyaButunlukDogrulamaForm();
+
 
         //Renkleri buradan değiştirebilirsiniz.
         Color BACK_COLOR = Color.FromArgb(21, 33, 36);
@@ -47,6 +51,8 @@ namespace mNotepad
         string xmlAyarIsim;
         string xmlAyarDeger;
         static string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
+
+        
 
         public anaEkranForm()
         {
@@ -702,79 +708,13 @@ namespace mNotepad
 
         private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hakkindaForm hakkindaFormfrm = new hakkindaForm();
+            
             hakkindaFormfrm.Show();
-        }
-
-        private void düzMetinToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".txt";
-            editorDosyaTurBelirle();
         }
 
         private void altBilgiGuncelleTimer_Tick(object sender, EventArgs e)
         {
             altBilgiGuncelle();
-        }
-
-        private void cToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".c";
-            editorDosyaTurBelirle();
-        }
-
-        private void cToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".cs";
-            editorDosyaTurBelirle();
-        }
-
-        private void cToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".cpp";
-            editorDosyaTurBelirle();
-        }
-
-        private void vBNETToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".vb";
-            editorDosyaTurBelirle();
-        }
-
-        private void javaScriptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".js";
-            editorDosyaTurBelirle();
-        }
-
-        private void pythonToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".py";
-            editorDosyaTurBelirle();
-        }
-
-        private void batchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".bat";
-            editorDosyaTurBelirle();
-        }
-
-        private void xMLXAMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".xml";
-            editorDosyaTurBelirle();
-        }
-
-        private void ıNIToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".ini";
-            editorDosyaTurBelirle();
-        }
-
-        private void hTMHTMLXHTMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dosyauzanti = ".html";
-            editorDosyaTurBelirle();
         }
 
         private void tamEkranToolStripMenuItem_Click(object sender, EventArgs e)
@@ -824,11 +764,15 @@ namespace mNotepad
             {
                 dosyaKaydetDurum = true;
                 this.Text = "mNotepad -- " + dosyaDizinEvrensel;
+                kayitDurumPicturebox.Image = Properties.Resources.save_true;
+                elementToolTip.SetToolTip(kayitDurumPicturebox, "Değişiklikler kaydedildi.");
             }
             else
             {
                 dosyaKaydetDurum = false;
                 this.Text = "mNotepad -- " + dosyaDizinEvrensel + "*";
+                kayitDurumPicturebox.Image = Properties.Resources.save_false;
+                elementToolTip.SetToolTip(kayitDurumPicturebox, "Değişiklikler kaydedilmedi!");
             }
         }
 
@@ -859,6 +803,7 @@ namespace mNotepad
 
         private void anaEkranForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             dosyaKaydetUyariForm dosyaKaydetUyariFormfrm = new dosyaKaydetUyariForm();
             //dosya kaydedilmemişse program kapanmadan önce uyar
             if (dosyaKaydetDurum == false)
@@ -909,14 +854,12 @@ namespace mNotepad
 
         private void hataGidermeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dosyaButunlukDogrulamaForm dosyaButunlukDogrulamaFormfrm = new dosyaButunlukDogrulamaForm();
+            
             dosyaButunlukDogrulamaFormfrm.Show();
         }
 
         private void dosyaButunlukDogrula() //dosyaları kontrol et, eğer dosya yerinde yoksa uyarı ver.
         {
-            dosyaButunlukDogrulamaForm dosyaButunlukDogrulamaFormfrm = new dosyaButunlukDogrulamaForm();
-            
             //-------------------------------------------------------------------
             if (!File.Exists("AxInterop.WMPLib.dll"))
             {
@@ -953,6 +896,78 @@ namespace mNotepad
         private void yeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(programyolu + @"\mNotepad.exe");
+        }
+
+        private void ayarlarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            ayarFormfrm.Show();
+        }
+
+        private void düzMetinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".txt";
+            editorDosyaTurBelirle(); 
+        }
+
+        private void cToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".c";
+            editorDosyaTurBelirle();
+        }
+
+        private void cToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".cs";
+            editorDosyaTurBelirle();
+        }
+
+        private void cToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".cpp";
+            editorDosyaTurBelirle();
+        }
+
+        private void vBNETToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".vb";
+            editorDosyaTurBelirle();
+        }
+
+        private void javaScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".js";
+            editorDosyaTurBelirle();
+        }
+
+        private void pythonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".py";
+            editorDosyaTurBelirle();
+        }
+
+        private void batchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".bat";
+            editorDosyaTurBelirle();
+        }
+
+        private void hTMHTMLXHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".html";
+            editorDosyaTurBelirle();
+        }
+
+        private void xMLXAMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".xml";
+            editorDosyaTurBelirle();
+        }
+
+        private void ıNIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dosyauzanti = ".ini";
+            editorDosyaTurBelirle();
         }
     }
 }
